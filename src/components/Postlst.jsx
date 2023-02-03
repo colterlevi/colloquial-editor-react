@@ -37,19 +37,23 @@ const Postlist = ({dispatch}) => {
     if (!currentUser) return null
 
     return(
-        <div className="flex-row bg-cello w-3/5 p-10 rounded-lg align-middle overflow-auto scrollbar-hide md:scrollbar-default">
-            <h2 className="text-4xl text-slate uppercase bg-tamarillo rounded-lg p-3 w-3/5 text-center">{currentUser.username}'s DASHBOARD</h2>
-            {
-                posts.map((post) => {
-                    return (
-                        <div key={post.id} className="w-4/5 h-auto m-8 p-5 rounded-lg bg-swirl hover:bg-chateau hover:text-tamarillo" onClick={() => { alert(`You clicked article no. ${post.id}`) }}>
-                            <p className="font-bold text-xl text-dianne text-left">{post.author}</p>
-                            <p className="font-bold text-dianne text-right flow-right">{post.created_at}</p>
-                            <p>{post.content}</p>
-                        </div>
-                    )
-                })
-            }
+        <div className="flex-col overflow-auto scrollbar-hide md:scrollbar-default">
+            <div className="flex justify-center items-center mt-10">
+                <h2 className="text-4xl text-slate uppercase bg-tamarillo rounded-lg p-3 w-auto text-center">All Posts</h2>
+            </div>
+            <div className="flex-row bg-cello m-10 p-10 rounded-lg">
+                {
+                    posts.map((post) => {
+                        return (
+                            <div key={post.id} className="w-auto h-auto my-8 p-5 rounded-lg bg-swirl hover:bg-chateau hover:text-tamarillo" onClick={() => { alert(`You clicked article no. ${post.id}`) }}>
+                                <p className="font-bold text-xl text-dianne text-left">{post.author}</p>
+                                <p className="font-bold text-dianne text-right flow-right">{post.created_at}</p>
+                                <p className="truncate">{post.content}</p>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }

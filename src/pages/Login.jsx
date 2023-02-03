@@ -68,7 +68,7 @@ const Login = ({dispatch}) => {
                     <form className="flex-row justify-center items-center text-center">
                     <input className="h-10 w-4/5 rounded-md text-center" type="email" value={formData.email} name='email' onChange={e => handleChange(e)} placeholder="EMAIL" /><br />
                     <input className="mt-3 w-4/5 h-10 rounded-md text-center" type="password" value={formData.password} name='password' onChange={e => handleChange(e)} placeholder="PASSWORD" /><br />
-                    <input type="button" className="mt-5 p-2 bg-cello hover:bg-tamarillo text-slate uppercase rounded-md" onClick={e => handleSubmit(e)} />
+                    <input type="submit" value="Login" className="mt-5 p-2 bg-cello hover:bg-tamarillo text-slate uppercase rounded-md" onClick={e => handleSubmit(e)} />
                 </form>
             </div>
         </div>

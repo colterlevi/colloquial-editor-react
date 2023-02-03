@@ -32,8 +32,9 @@ const Dashboard = ({ dispatch }) => {
 
     return(
         <div className='flex bg-dianne w-screen h-screen'>
-            <div className="flex-col w-2/12 bg-chateau mr-20 text-center space-y-96 justify-end">
-                <Navbar />
+            <div className="flex-col w-2/12 bg-chateau mr-20 text-center">
+                <h2 className="text-sm text-slate uppercase bg-cello m-14 rounded-lg p-3 w-3/5">{currentUser.username}'s DASHBOARD</h2>
+                <Navbar currentUser={currentUser}/>
                 <Logout dispatch={dispatch} navigate={navigate} />
             </div>
             <Outlet />

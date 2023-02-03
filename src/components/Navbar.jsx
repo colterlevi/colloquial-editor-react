@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
+function Navbar ({currentUser}) {
     let activeClassName = "bg-tamarillo p-3 rounded-lg";
     
     return (
@@ -18,7 +18,7 @@ function Navbar() {
                 </li>
                 <li className="my-8">
                     <NavLink
-                        to="/"
+                        to="/add-post"
                         className={({ isActive }) =>
                             isActive ? activeClassName : "bg-swirl p-3 rounded-lg"
                         }
@@ -38,7 +38,7 @@ function Navbar() {
                 </li>
                 <li className="my-8">
                     <NavLink
-                        to="/"
+                        to="/users"
                         className={({ isActive }) =>
                             isActive ? activeClassName : "bg-swirl p-3 rounded-lg"
                         }
