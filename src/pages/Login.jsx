@@ -1,17 +1,35 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { login } from "../features/user"
 
 const Login = ({dispatch}) => {
-    const navigate = useNavigate
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const request = async () => {
+            let req = await fetch('http://127.0.0.1:3000/who_am_i', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.token}`,
+                }
+            }
+            )
+            let res = await req.json()
+            if (req.ok) {
+                dispatch(login(res))
+                console.log(res)
+                navigate('/dashboard')
+            } else { 
+                navigate('/')
+                console.log("No user logged in") }
+        }
+        request()
+    }, [])
   
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     })
-    const selectedUser = useSelector((state) => state.user.value)
-    console.log(selectedUser)
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
