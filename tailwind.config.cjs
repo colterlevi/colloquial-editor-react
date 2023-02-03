@@ -15,5 +15,7 @@ module.exports = {
       'slate': '#f1f5f9',
     }
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
 }

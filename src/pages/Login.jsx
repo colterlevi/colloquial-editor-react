@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux"
 import { login } from "../features/user"
 
 const Login = ({dispatch}) => {
@@ -18,9 +17,9 @@ const Login = ({dispatch}) => {
             if (req.ok) {
                 dispatch(login(res))
                 console.log(res)
-                navigate('/dashboard')
-            } else { 
                 navigate('/')
+            } else { 
+                navigate('/login')
                 console.log("No user logged in") }
         }
         request()
@@ -53,7 +52,7 @@ const Login = ({dispatch}) => {
         if (req.ok) {
             dispatch(login(res.author))
             localStorage.setItem("token", res.token)
-            navigate('/dashboard')
+            navigate('/')
 
         } else {
             alert("LOGIN FAILED")
