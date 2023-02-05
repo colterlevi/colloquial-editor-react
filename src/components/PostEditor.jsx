@@ -37,10 +37,17 @@ const PostEditor = ({dispatch}) => {
     }, [])
 
     return (
-        <Slate editor={editor} value={initialValue}>
-            <Editable />
-        </Slate>
+        <div className='bg-slate m-20 p-3 w-4/5 rounded-lg'>
+            <Slate editor={editor} value={initialValue}>
+                <Editable 
+                    onKeyDown={event => {
+                        console.log(event.key)
+                    }}
+                    />
+            </Slate>
+        </div>
     )
+    
 
 }
 
