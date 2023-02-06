@@ -57,8 +57,8 @@ const Postlist = ({dispatch}) => {
     if (!currentUser) return null
 
     return(
-        <div className="flex-col overflow-auto scrollbar-hide md:scrollbar-default">
-            <div className="flex-row bg-cello m-10 p-10 rounded-lg">
+        <div className="flex-col h-auto overflow-auto scrollbar-hide md:scrollbar-default">
+            <div className="flex-row bg-cello m-10 p-5 rounded-lg">
                 {
                     posts.map((post) => {
                         return (
