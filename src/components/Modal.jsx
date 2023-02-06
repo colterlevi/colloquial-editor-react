@@ -39,7 +39,7 @@ export default function Modal({ showModal, setShowModal, selectedUser, setSelect
             console.log(res)
 
         } else {
-            console.log("USER CREATION FAILED")
+            console.log("USER PATCH FAILED")
         }
     }
 
