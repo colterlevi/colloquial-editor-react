@@ -9,7 +9,7 @@ const Userlist = ({dispatch}) => {
     const navigate = useNavigate()
     const [users, setUsers] = useState([])
     const [showModal, setShowModal] = useState(false);
-    const [selectedUser, setSelectedUser] = useState(null)
+    const [selectedUser, setSelectedUser] = useState({})
 
     useEffect(() => {
         const requestUser = async () => {
@@ -37,6 +37,16 @@ const Userlist = ({dispatch}) => {
         requestUsers()
     }, [])
 
+    const handleClick = (user) => {
+        if (showModal === false){
+            setSelectedUser(user)
+        }
+        else {
+            return;
+        }
+
+    }
+
     console.log(selectedUser)
 
     if (!currentUser) return null
@@ -49,7 +59,7 @@ const Userlist = ({dispatch}) => {
                     else {
                     return (
                         <div key={user.id} className="flex w-4/5 h-auto m-8 p-5 justify-evenly rounded-lg bg-swirl hover:bg-chateau hover:text-tamarillo"
-                        onClick={() => {setSelectedUser(user)}}
+                        onClick={() => {handleClick(user)}} 
                         >
                             <div>
                                 <p className="font-bold text-xl text-dianne text-left">{user.username}</p>
