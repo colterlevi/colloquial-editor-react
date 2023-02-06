@@ -37,7 +37,7 @@ const PostEditor = ({dispatch}) => {
     }, [])
 
     return (
-        <div className='bg-slate m-20 p-3 w-4/5 rounded-lg'>
+        <div className='bg-slate m-20 p-3 w-4/5 h-4/5 rounded-lg overflow-auto scrollbar-hide md:scrollbar-default'>
             <Slate editor={editor} value={initialValue}>
                 <Editable 
                     onKeyDown={event => {

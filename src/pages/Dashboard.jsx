@@ -32,12 +32,14 @@ const Dashboard = ({ dispatch }) => {
 
     return(
         <div className='flex bg-dianne w-screen h-screen'>
-            <div className="flex-col w-2/12 bg-chateau mr-20 text-center">
-                <h2 className="text-sm text-slate uppercase bg-cello m-14 rounded-lg p-3 w-3/5">{currentUser.username}'s DASHBOARD</h2>
+            <div className="flex-col w-1/5 bg-chateau mr-20 text-center">
+                <h2 className="text-sm text-slate uppercase bg-cello m-14 rounded-lg p-3 w-auto">{currentUser.username}'s DASHBOARD</h2>
                 <Navbar currentUser={currentUser}/>
                 <Logout dispatch={dispatch} navigate={navigate} />
             </div>
-            <Outlet />
+            <div className="flex w-4/5 justify-center items-center overflow-auto scrollbar-hide md:scrollbar-default">
+                <Outlet />
+            </div>
         </div>
     )
 }

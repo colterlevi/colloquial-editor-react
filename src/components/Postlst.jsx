@@ -38,9 +38,6 @@ const Postlist = ({dispatch}) => {
 
     return(
         <div className="flex-col overflow-auto scrollbar-hide md:scrollbar-default">
-            <div className="flex justify-center items-center mt-10">
-                <h2 className="text-4xl text-slate uppercase bg-tamarillo rounded-lg p-3 w-auto text-center">All Posts</h2>
-            </div>
             <div className="flex-row bg-cello m-10 p-10 rounded-lg">
                 {
                     posts.map((post) => {
