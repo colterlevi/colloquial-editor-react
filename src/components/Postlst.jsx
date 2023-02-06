@@ -67,7 +67,7 @@ const Postlist = ({dispatch}) => {
                                 <p className="font-bold text-dianne text-right flow-right">{post.created_at}</p>
                                 <p className="truncate">{post.content}</p>
                                 <button 
-                                className="text-slate bg-tamarillo font-bold rounded-full w-10 h-10 uppercase px-2 py-2 text-sm float-right"
+                                    className="text-slate bg-tamarillo font-bold rounded-full w-10 h-10 uppercase px-2 py-2 text-sm sticky"
                                 type="button"
                                 onClick={(e)=> {handleDelete(e)}}>X</button>
                             </div>
