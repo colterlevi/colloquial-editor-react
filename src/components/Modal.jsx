@@ -43,7 +43,27 @@ export default function Modal({ showModal, setShowModal, selectedUser, setSelect
         }
     }
 
-    const handleClick = () => {
+    const handleDelete = async (e) => {
+        e.preventDefault()
+        let req = await fetch(`http://127.0.0.1:3000/authors/${selectedUser.id}`, {
+            method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${localStorage.token}`,
+            },
+        })
+        let res = await req.json()
+        if (req.ok) {
+            console.log(res)
+
+        } else {
+            console.log("USER DELETION FAILED")
+        }
+    }
+
+    
+
+    const handleClick = (e) => {
+        e.preventDefault()
         setSelectedUser({})
         setShowModal(false)
     }
@@ -93,9 +113,16 @@ export default function Modal({ showModal, setShowModal, selectedUser, setSelect
                                     <button
                                         className="text-slate bg-tamarillo font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
-                                        onClick={() => handleClick()}
+                                        onClick={(e) => handleClick(e)}
                                     >
                                         Close
+                                    </button>
+                                    <button
+                                        className="text-slate bg-tamarillo font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="button"
+                                        onClick={(e) => handleDelete(e)}
+                                    >
+                                        delete user
                                     </button>
                                 </div>
                             </div>
