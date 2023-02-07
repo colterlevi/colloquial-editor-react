@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
-const AddUser = ({dispatch}) => {
-
+const AddUser = () => {
+    const currentUser = useSelector((state) => state.user.value)
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -41,6 +44,8 @@ const AddUser = ({dispatch}) => {
             console.log("USER CREATION FAILED")
         }
     }
+
+    if (currentUser.admin !== true) useEffect(() => navigate('/'))
 
     return (
         <div className="flex bg-dianne w-auto p-10 justify-center items-center">
