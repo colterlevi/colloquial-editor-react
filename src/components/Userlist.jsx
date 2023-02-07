@@ -13,28 +13,12 @@ const Userlist = ({dispatch}) => {
     const [selectedUser, setSelectedUser] = useState({})
 
     useEffect(() => {
-        // const requestUser = async () => {
-        //     let req = await fetch('http://127.0.0.1:3000/who_am_i', {
-        //         headers: {
-        //             'Authorization': `Bearer ${Cookies.get('token')}`,
-        //         }
-        //     }
-        //     )
-        //     let res = await req.json()
-        //     if (req.ok) {
-        //         dispatch(login(res))
-        //     } else {
-        //         navigate('/login')
-        //         console.log("No user logged in")
-        //     }
-        // }
         const requestUsers = async () => {
             let req = await fetch(`http://127.0.0.1:3000/authors`)
             let res = await req.json()
             setUsers(res)
             console.log(res)
         }
-        // requestUser()
         requestUsers()
     }, [])
 

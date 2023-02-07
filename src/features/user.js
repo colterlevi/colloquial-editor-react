@@ -8,7 +8,6 @@ const initialStateValue = {
     email: "",
     admin: false,
     articles: [],
-    // token: ""
 }
 export const userSlice = createSlice({
     name: "user",

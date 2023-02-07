@@ -8,7 +8,7 @@ import { Slate, Editable, withReact } from 'slate-react'
 import Cookies from 'js-cookie'
 
 
-const PostEditor = () => {
+const PostCreator = () => {
     // Create a Slate editor object that won't change across renders.
     const [editor] = useState(() => withReact(createEditor()))
     const currentUser = useSelector((state) => state.user.value)
@@ -87,4 +87,4 @@ const PostEditor = () => {
 
 }
 
-export default PostEditor
+export default PostCreator

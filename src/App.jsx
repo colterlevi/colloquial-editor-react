@@ -11,7 +11,7 @@ import Dashboard from './pages/Dashboard.jsx'
 import Postlist from './components/Postlst.jsx';
 import Userlist from './components/Userlist.jsx';
 import AddUser from './components/AddUser.jsx';
-import PostEditor from './components/PostEditor.jsx';
+import PostCreator from './components/PostCreator.jsx';
 
 const App = () => {
   const dispatch = useDispatch()
@@ -39,7 +39,7 @@ const App = () => {
         },
         {
           path: 'add-post',
-          element: <PostEditor />
+          element: <PostCreator />
         }
       ]
     },
