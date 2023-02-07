@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 export default function Modal({ showModal, setShowModal, selectedUser, setSelectedUser }) {
 
@@ -48,7 +49,7 @@ export default function Modal({ showModal, setShowModal, selectedUser, setSelect
         let req = await fetch(`http://127.0.0.1:3000/authors/${selectedUser.id}`, {
             method: "DELETE",
             headers: {
-                'Authorization': `Bearer ${localStorage.token}`,
+                'Authorization': `Bearer ${Cookies.get('token')}`,
             },
         })
         let res = await req.json()

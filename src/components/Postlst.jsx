@@ -2,36 +2,20 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { login } from "../features/user"
+import Cookies from "js-cookie";
 
-const Postlist = ({dispatch}) => {
+const Postlist = () => {
     const [posts, setPosts] = useState([])
     const [selectedArticle, setSelectedArticle] = useState({})
     const currentUser = useSelector((state) => state.user.value)
-    const navigate = useNavigate()
 
     useEffect(() => {
-        const requestUser = async () => {
-            let req = await fetch('http://127.0.0.1:3000/who_am_i', {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.token}`,
-                }
-            }
-            )
-            let res = await req.json()
-            if (req.ok) {
-                dispatch(login(res))
-            } else {
-                navigate('/login')
-                console.log("No user logged in")
-            }
-        }
         const requestPosts = async () => {
             let req = await fetch(`http://127.0.0.1:3000/articles`)
             let res = await req.json()
             setPosts(res)
             console.log(res)
         }
-        requestUser()
         requestPosts()
     }, [])
 
@@ -40,7 +24,7 @@ const Postlist = ({dispatch}) => {
         let req = await fetch(`http://127.0.0.1:3000/articles/${selectedArticle.id}`, {
             method: "DELETE",
             headers: {
-                'Authorization': `Bearer ${localStorage.token}`,
+                'Authorization': `Bearer ${Cookies.get('token')}`,
             },
         })
         let res = await req.json()

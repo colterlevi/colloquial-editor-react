@@ -1,29 +1,7 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
-import { login } from "../features/user"
+import { useState } from "react";
 
 
 const AddUser = ({dispatch}) => {
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        const request = async () => {
-            let req = await fetch('http://127.0.0.1:3000/who_am_i', {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.token}`,
-                }
-            }
-            )
-            let res = await req.json()
-            if (req.ok) {
-                dispatch(login(res))
-            } else {
-                navigate('/login')
-                console.log("No user logged in")
-            }
-        }
-        request()
-    }, [])
 
     const [formData, setFormData] = useState({
         email: '',

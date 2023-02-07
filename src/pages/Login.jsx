@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../features/user"
+import Cookies from "js-cookie";
 
 const Login = ({dispatch}) => {
     const navigate = useNavigate()
@@ -9,7 +10,7 @@ const Login = ({dispatch}) => {
         const request = async () => {
             let req = await fetch('http://127.0.0.1:3000/who_am_i', {
                 headers: {
-                    'Authorization': `Bearer ${localStorage.token}`,
+                    'Authorization': `Bearer ${Cookies.get('token')}`,
                 }
             }
             )
@@ -51,7 +52,7 @@ const Login = ({dispatch}) => {
         let res = await req.json()
         if (req.ok) {
             dispatch(login(res.author))
-            localStorage.setItem("token", res.token)
+            Cookies.set("token", res.token)
             navigate('/')
 
         } else {

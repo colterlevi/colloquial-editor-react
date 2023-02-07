@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 function Navbar ({currentUser}) {
     let activeClassName = "bg-tamarillo p-3 rounded-lg";
     
+    if (currentUser.admin === true) {
     return (
         <nav>
             <ul className="text-slate font-bold p-10">
@@ -62,6 +63,34 @@ function Navbar ({currentUser}) {
             </ul>
         </nav>
     );
+} else {
+    return(
+        <nav>
+            <ul className="text-slate font-bold p-10">
+                <li className="my-8">
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) =>
+                            isActive ? activeClassName : "bg-swirl p-3 rounded-lg"
+                        }
+                    >
+                        DASHBOARD
+                    </NavLink>
+                </li>
+                <li className="my-8">
+                    <NavLink
+                        to="/add-post"
+                        className={({ isActive }) =>
+                            isActive ? activeClassName : "bg-swirl p-3 rounded-lg"
+                        }
+                    >
+                        NEW POST
+                    </NavLink>
+                </li>
+            </ul>
+        </nav>
+    );
+}
 }
 
 export default Navbar;

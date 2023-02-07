@@ -27,19 +27,19 @@ const App = () => {
       children: [
         {
           path: 'posts',
-          element: <Postlist dispatch={dispatch} />,
+          element: <Postlist />,
         },
         {
           path: 'add-user',
-          element: <AddUser dispatch={dispatch} />
+          element: <AddUser />
         },
         {
           path: 'users',
-          element: <Userlist dispatch={dispatch} />
+          element: <Userlist />
         },
         {
           path: 'add-post',
-          element: <PostEditor dispatch={dispatch}/>
+          element: <PostEditor />
         }
       ]
     },

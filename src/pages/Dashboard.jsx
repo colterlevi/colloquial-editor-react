@@ -4,6 +4,7 @@ import { useNavigate, Outlet } from "react-router-dom"
 import { login } from "../features/user"
 import Logout from "../components/Logout";
 import Navbar from "../components/Navbar";
+import Cookies from "js-cookie";
 
 const Dashboard = ({ dispatch }) => {
     const currentUser = useSelector((state) => state.user.value)
@@ -13,7 +14,7 @@ const Dashboard = ({ dispatch }) => {
         const requestUser = async () => {
             let req = await fetch('http://127.0.0.1:3000/who_am_i', {
                 headers: {
-                    'Authorization': `Bearer ${localStorage.token}`,
+                    'Authorization': `Bearer ${Cookies.get('token')}`,
                 }
             }
             )

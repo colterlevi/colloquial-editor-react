@@ -1,4 +1,5 @@
 import { logout } from "../features/user"
+import Cookies from "js-cookie"
 
 const Logout = ({dispatch, navigate}) => {
 
@@ -6,18 +7,19 @@ const Logout = ({dispatch, navigate}) => {
         let req = await fetch('http://127.0.0.1:3000/logout', {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${localStorage.token}`,
+                'Authorization': `Bearer ${Cookies.get('token')}`,
             }
         }
         )
         let res = await req.json()
         if (req.ok) {
             dispatch(logout())
-            console.log(res)
+            Cookies.remove('token')
             navigate('/login')
+            console.log(res)
         }
         else {
-            console.log("LOGOUT FAILED")
+            return;
         }
     }
 
