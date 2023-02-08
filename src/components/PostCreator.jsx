@@ -5,6 +5,7 @@ import { createEditor, Editor, Transforms, Text } from 'slate'
 import { useSelector } from "react-redux"
 // Import the Slate components and React plugin.
 import { Slate, Editable, withReact } from 'slate-react'
+import isHotkey from 'is-hotkey'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 
@@ -102,7 +103,7 @@ const PostCreator = () => {
                                 // Execute the `insertText` method when the event occurs.
                                 editor.insertText('and')
                             }
-                            if (!event.ctrlKey) {
+                            if (!event.cmdKey) {
                                 return
                             }
 

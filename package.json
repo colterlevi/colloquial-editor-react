@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lexical/react": "^0.7.8",
     "@reduxjs/toolkit": "^1.9.2",
     "@udecode/plate": "^19.4.4",
     "image-extensions": "^1.1.0",
     "is-hotkey": "^0.2.0",
     "is-url": "^1.2.4",
     "js-cookie": "^3.0.1",
+    "lexical": "^0.7.8",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",

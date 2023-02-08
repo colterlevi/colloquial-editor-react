@@ -23,7 +23,7 @@ const Postlist = () => {
                                 <p className="font-bold text-xl text-dianne text-left">{post.author}</p>
                                 </div>
                                 <div className="flex w-full justify-between">
-                                    <p className="truncate">{post.content}</p><br />
+                                    <p className="w-3/5 truncate">{post.content}</p><br />
                                 <p className="font-bold">{post.created_at}</p>
                                 </div>
                                 <br />
