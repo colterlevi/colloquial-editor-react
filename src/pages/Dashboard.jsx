@@ -29,8 +29,6 @@ const Dashboard = ({ dispatch }) => {
         requestUser()
     }, [])
 
-    console.log(currentUser)
-
     if (!currentUser) return null
 
     return(

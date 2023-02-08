@@ -27,7 +27,7 @@ function Navbar ({currentUser}) {
                         NEW POST
                     </NavLink>
                 </li>
-                <li className="my-8">
+                {/* <li className="my-8">
                     <NavLink
                         to="/posts"
                         className={({ isActive }) =>
@@ -36,7 +36,7 @@ function Navbar ({currentUser}) {
                     >
                         ALL POSTS
                     </NavLink>
-                </li>
+                </li> */}
                 <li className="my-8">
                     <NavLink
                         to="/users"
