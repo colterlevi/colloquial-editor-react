@@ -3,7 +3,7 @@ import {
   createBrowserRouter,
   Route,
   RouterProvider,
-  useNavigate
+  useRouteError
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import Login from './pages/Login.jsx'
@@ -17,6 +17,13 @@ import UserModal from './components/UserModal.jsx';
 
 const App = () => {
   const dispatch = useDispatch()
+  
+  const ErrorBoundary = () => {
+    let error = useRouteError();
+    console.error(error);
+    // Uncaught ReferenceError: path is not defined
+    return <div className='flex w-screen h-screen justify-center items-center text-4xl font-bold text-tamarillo bg-slate'>Dang! It's a 404...</div>;
+  }
   
   const router = createBrowserRouter([
     {
@@ -65,7 +72,8 @@ const App = () => {
           path: 'add-post',
           element: <PostCreator />
         },
-      ]
+      ],
+      errorElement: <ErrorBoundary />
     },
   ]);
 
