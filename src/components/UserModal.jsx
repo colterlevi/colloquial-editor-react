@@ -84,7 +84,7 @@ export default function UserModal({}) {
                                 </div>
                                 {/*body*/}
                                 <div className="flex-row justify-center items-center">
-                                    <img src="ColloquialHeader5.png" className="p-3" />
+                                    <img src="../ColloquialHeader5.png" className="p-3 w-96" />
                                     <h2 className="font-semibold text-3xl text-center text-dianne">EDIT USER</h2><br />
                                     <form className="flex-row justify-center items-center text-center space-y-3">
                                         <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.first_name} name='first_name' onChange={e => handleChange(e)} placeholder={user.first_name} /><br />
@@ -94,7 +94,7 @@ export default function UserModal({}) {
                                         <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.bio} name='bio' onChange={e => handleChange(e)} placeholder={user.bio === '' ? 'bio' : user.bio} /><br />
                                         <div className="flex space-x-2 justify-center items-center">
                                             <label className="uppercase text-dianne text-2xl">Admin?</label>
-                                            <input className="w-5 h-5" type="checkbox" value={1} name='admin' onChange={e => handleChange(e)} placeholder="ADMIN" />
+                                            <input className="w-5 h-5" type="checkbox" value={1} name='admin' onChange={e => handleChange(e)} />
                                         </div><br />
                                         <input type="submit" className="p-2 bg-cello hover:bg-tamarillo text-slate uppercase rounded-md" onClick={e => handleSubmit(e)} value="SAVE" />
                                     </form><br />

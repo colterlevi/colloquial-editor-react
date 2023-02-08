@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { useLoaderData, useNavigate } from "react-router-dom"
 // Import the Slate editor factory.
-import { createEditor } from 'slate'
+import { createEditor, Editor, Transforms, Text } from 'slate'
 import { useSelector } from "react-redux"
 // Import the Slate components and React plugin.
 import { Slate, Editable, withReact } from 'slate-react'
@@ -18,11 +18,17 @@ const PostEditor = () => {
     const [title, setTitle] = useState(post.title)
 
     const initialValue = useMemo(
-        () =>
-            JSON.parse(localStorage.getItem(`content ${post.id}`)) || [
+        () =>   
+            [
                 {
                     type: 'paragraph',
-                    children: [{ text: post.content }],
+                    children: [{ text: post?.content }],
+                }
+            ] || [
+                
+                {
+                    type: 'paragraph',
+                    children: [{ text: 'A line of text in a paragraph.' }],
                 },
             ],
         []
@@ -68,7 +74,6 @@ const PostEditor = () => {
         let res = await req.json()
         if (req.ok) {
             console.log(res)
-            localStorage.removeItem("content")
 
         } else {
             console.log("POST CREATION FAILED")
