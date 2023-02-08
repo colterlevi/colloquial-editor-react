@@ -100,9 +100,9 @@ const PostEditor = () => {
     if (!currentUser) return null
 
     return (
-        <div className='flex-row justify-center items-center w-2/3 h-auto bg-swirl rounded-lg p-5 fixed z-50'>
+        <div className='flex-row justify-center items-center w-3/5 h-4/5 ml-96 mt-20 bg-swirl rounded-lg p-5 fixed z-50 inset-0'>
             <input className="h-auto w-3/5 p-3 rounded-md text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder={post.title} /><br />
-            <div className='bg-slate my-3 p-3 w-full h-96 rounded-lg overflow-auto scrollbar-hide md:scrollbar-default'>
+            <div className='bg-slate my-3 p-3 w-full h-4/5 rounded-lg overflow-auto scrollbar-hide md:scrollbar-default'>
                 <Slate editor={editor}
                     value={initialValue}
                     onChange={value => {

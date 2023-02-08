@@ -32,10 +32,13 @@ const Postlist = () => {
                                         className="text-slate bg-dianne font-bold rounded-lg w-auto h-10 uppercase px-2 py-2 text-sm"
                                     type="button"
                                     onClick={()=> {navigate(`edit/${post.id}`)}}>Edit Post</button>
+                                    {
+                                        post.edits[0] === undefined ? null :
                                     <div className="text-right text-tamarillo">
                                         <p className="font-bold">last edited by {post.edits.at(-1).editor}</p>
                                         <p> at {post.edits.at(-1).updated_at}</p>
                                     </div>
+                                    }
                                 </div>
                             </div>
                         )
