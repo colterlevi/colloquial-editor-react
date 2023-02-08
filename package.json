@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",
+    "@udecode/plate": "^19.4.4",
+    "image-extensions": "^1.1.0",
+    "is-hotkey": "^0.2.0",
+    "is-url": "^1.2.4",
     "js-cookie": "^3.0.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
@@ -20,8 +24,11 @@
     "react-router-dom": "^6.8.0",
     "redux": "^4.2.1",
     "slate": "^0.90.0",
+    "slate-history": "^0.86.0",
+    "slate-hyperscript": "^0.77.0",
     "slate-react": "^0.90.0",
     "sort-by": "^1.2.0",
+    "styled-components": "^5.3.6",
     "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {

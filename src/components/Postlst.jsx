@@ -1,23 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import { login } from "../features/user"
+import { useLoaderData, useNavigate } from "react-router-dom"
 import Cookies from "js-cookie";
 
 const Postlist = () => {
-    const [posts, setPosts] = useState([])
+    const posts = useLoaderData()
+    const navigate = useNavigate()
     const [selectedArticle, setSelectedArticle] = useState({})
     const currentUser = useSelector((state) => state.user.value)
-
-    useEffect(() => {
-        const requestPosts = async () => {
-            let req = await fetch(`http://127.0.0.1:3000/articles`)
-            let res = await req.json()
-            setPosts(res)
-            console.log(res)
-        }
-        requestPosts()
-    }, [])
 
     const handleDelete = async (e) => {
         e.preventDefault()
@@ -36,8 +26,6 @@ const Postlist = () => {
         }
     }
 
-    console.log(selectedArticle)
-
     if (!currentUser) return null
 
     return(
@@ -50,10 +38,16 @@ const Postlist = () => {
                                 <p className="font-bold text-xl text-dianne text-left">{post.author}</p>
                                 <p className="font-bold text-dianne text-right flow-right">{post.created_at}</p>
                                 <p className="truncate">{post.content}</p>
-                                <button 
-                                    className="text-slate bg-tamarillo font-bold rounded-full w-10 h-10 uppercase px-2 py-2 text-sm sticky"
-                                type="button"
-                                onClick={(e)=> {handleDelete(e)}}>X</button>
+                                <div className="flex w-full justify-between mt-3">
+                                    <button 
+                                        className="text-slate bg-dianne font-bold rounded-lg w-auto h-10 uppercase px-2 py-2 text-sm"
+                                    type="button"
+                                    onClick={()=> {navigate(`edit/${post.id}`)}}>Edit Post</button>
+                                    <button
+                                        className="text-slate bg-tamarillo font-bold rounded-full w-10 h-10 uppercase px-2 py-2 text-sm"
+                                        type="button"
+                                        onClick={(e) => { handleDelete(e) }}>X</button>
+                                </div>
                             </div>
                         )
                     })
@@ -61,6 +55,12 @@ const Postlist = () => {
             </div>
         </div>
     )
+}
+
+export const postLoader = async () => {
+    let req = await fetch(`http://127.0.0.1:3000/articles`)
+    let res = await req.json()
+    return res
 }
 
 export default Postlist
