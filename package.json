@@ -29,6 +29,8 @@
     "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
+    "react-trix": "^0.10.0",
+    "react-trix-rte": "^1.0.16",
     "redux": "^4.2.1",
     "slate": "^0.90.0",
     "slate-history": "^0.86.0",
@@ -36,7 +38,8 @@
     "slate-react": "^0.90.0",
     "sort-by": "^1.2.0",
     "styled-components": "^5.3.6",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "trix": "^2.0.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

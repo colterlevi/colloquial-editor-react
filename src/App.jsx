@@ -15,6 +15,7 @@ import PostCreator from './components/PostCreator.jsx';
 import PostEditor from './components/PostEditor.jsx';
 import UserModal from './components/UserModal.jsx';
 import Editor from './components/LexicalEditor.jsx';
+import TrixColEditor from './components/TrixColEditor.jsx';
 
 const App = () => {
   const dispatch = useDispatch()
@@ -71,7 +72,7 @@ const App = () => {
         },
         {
           path: 'add-post',
-          element: <Editor />
+          element: <TrixColEditor />
         },
       ],
       errorElement: <ErrorBoundary />
