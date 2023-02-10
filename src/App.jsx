@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {
   createBrowserRouter,
-  Route,
   RouterProvider,
   useRouteError
 } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import Login from './pages/Login.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Postlist, { postLoader } from './components/Postlst.jsx';
@@ -14,7 +13,6 @@ import AddUser from './components/AddUser.jsx';
 import PostCreator from './components/PostCreator.jsx';
 import PostEditor from './components/PostEditor.jsx';
 import UserModal from './components/UserModal.jsx';
-import Editor from './components/LexicalEditor.jsx';
 
 const App = () => {
   const dispatch = useDispatch()
@@ -71,7 +69,7 @@ const App = () => {
         },
         {
           path: 'add-post',
-          element: <Editor />
+          element: <PostCreator />
         },
       ],
       errorElement: <ErrorBoundary />
