@@ -14,36 +14,7 @@ const PostCreator = () => {
         extensions: [
             StarterKit,
         ],
-        content: `
-      <h2>
-        Hi there,
-      </h2>
-      <p>
-        this is a <em>basic</em> example of <strong>tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
-      </p>
-      <ul>
-        <li>
-          That’s a bullet list with one …
-        </li>
-        <li>
-          … or two list items.
-        </li>
-      </ul>
-      <p>
-        Isn’t that great? And all of that is editable. But wait, there’s more. Let’s try a code block:
-      </p>
-      <pre><code class="language-css">body {
-  display: none;
-}</code></pre>
-      <p>
-        I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
-      </p>
-      <blockquote>
-        Wow, that’s amazing. Good work, boy! 👏
-        <br />
-        — Mom
-      </blockquote>
-    `,
+        content: `<h2>Write something good...</h2>`,
     })
 
     const handleSubmit = async (e) => {
@@ -73,18 +44,20 @@ const PostCreator = () => {
     }
 
     return (
-        <div className='w-4/5 rounded-lg p-10'>
-        <div className='bg-swirl text-dianne flex justify-between'>
-            <Toolbar editor={editor} />
+        <div className='rounded-lg p-10 h-4/5 fixed z-50 inset-x-1/4 inset-y-5 focus:outline-none focus:ring focus:border-cello'>
+            <div className='bg-swirl text-dianne flex justify-between'>
+                <Toolbar editor={editor} />
+            </div>
+            <input className="w-full p-3 bg-slate border-chateau text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder='Enter a title...' /><br />
+            <div className='w-full max-h-full mb-10 flex bg-slate prose lg:prose-2xl p-5 max-w-none overflow-auto scrollbar-hide md:scrollbar-default'>
+                <EditorContent editor={editor} />
+            </div>
+            <div className='bg-swirl p-3'>
+                <button className="bg-tamarillo text-slate rounded-lg p-3" onClick={(e) => handleSubmit(e)}>Submit</button>
+                <button className="bg-tamarillo text-slate rounded-lg p-3" onClick={() => navigate(-1)}>Close</button>
+                <button className="bg-tamarillo text-slate rounded-lg p-3" onClick={(e) => handleDelete(e)}>Delete</button>
+            </div>
         </div>
-            <input className="h-auto w-3/5 p-3 rounded-md text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder='Enter a title...' /><br />
-            <div className='bg-slate prose lg:prose-2xl p-5 max-w-none overflow-auto'>
-            <EditorContent editor={editor} />
-        </div>
-        <div className='bg-swirl p-3'>
-            <button className="bg-tamarillo text-slate rounded-lg p-3" onClick={(e) => handleSubmit(e)}>Submit</button>
-        </div>
-    </div>
     )
 }
 

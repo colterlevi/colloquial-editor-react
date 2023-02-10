@@ -67,12 +67,12 @@ const PostEditor = () => {
     if (!currentUser) return null
 
     return (
-        <div className='w-4/5 rounded-lg p-10 h-auto overflow-auto fixed z-50 inset-0'>
+        <div className='rounded-lg p-10 h-4/5 fixed z-50 inset-x-1/4 inset-y-5 focus:outline-none focus:ring focus:border-cello'>
             <div className='bg-swirl text-dianne flex justify-between'>
                 <Toolbar editor={editor} />
             </div>
-            <input className="h-auto w-3/5 p-3 rounded-md text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder={title} /><br />
-            <div className='bg-slate prose lg:prose-2xl p-5 max-w-none overflow-auto'>
+            <input className="w-full p-3 bg-slate border-chateau text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder={title} /><br />
+            <div className='w-full max-h-full mb-10 flex bg-slate prose lg:prose-2xl p-5 max-w-none overflow-auto scrollbar-hide md:scrollbar-default'>
                 <EditorContent editor={editor} />
             </div>
             <div className='bg-swirl p-3'>
