@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button.editor {
+    border: 2px solid black;
+    padding: 6px;
+    width: 80x;
+    border-radius: 8px;
+}

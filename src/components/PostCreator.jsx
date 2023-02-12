@@ -14,6 +14,11 @@ const PostCreator = () => {
         extensions: [
             StarterKit,
         ],
+        editorProps: {
+            attributes: {
+                class: 'prose max-w-none prose-sm sm:prose lg:prose-lg xl:prose-2xl m-5 focus:outline-none',
+            },
+        },
         content: `<h2>Write something good...</h2>`,
     })
 
@@ -44,12 +49,12 @@ const PostCreator = () => {
     }
 
     return (
-        <div className='rounded-lg p-10 h-4/5 fixed z-50 inset-x-1/4 inset-y-5 focus:outline-none focus:ring focus:border-cello'>
-            <div className='bg-swirl text-dianne flex justify-between'>
+        <div className='rounded-lg p-10 h-4/5 w-auto fixed z-50 inset-x-1/4 inset-y-5 focus:outline-none focus:ring focus:border-cello'>
+            <div className='bg-swirl text-dianne flex-wrap justify-between'>
                 <Toolbar editor={editor} />
             </div>
             <input className="w-full p-3 bg-slate border-chateau text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder='Enter a title...' /><br />
-            <div className='w-full max-h-full mb-10 flex bg-slate prose lg:prose-2xl p-5 max-w-none overflow-auto scrollbar-hide md:scrollbar-default'>
+            <div className='max-h-full mb-10 flex bg-slate p-5 overflow-auto scrollbar-hide md:scrollbar-default'>
                 <EditorContent editor={editor} />
             </div>
             <div className='bg-swirl p-3'>
