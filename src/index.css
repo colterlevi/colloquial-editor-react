@@ -8,15 +8,17 @@
     button.toolbar {
         border: 2px solid #162831;
         padding: 6px;
+        margin: 1em;
         width: fit-content;
         border-radius: 8px;
-        background-color: #CCC5B9;
+        background-color: transparent;
         
     }
 
     button.is-active {
         border: 2px solid #162831;
         padding: 6px;
+        margin: 1em;
         width: fit-content;
         border-radius: 8px;
         background-color: #919CAD;

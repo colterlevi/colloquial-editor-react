@@ -1,3 +1,5 @@
+import { FaListOl, FaListUl, FaParagraph, FaQuoteLeft, FaRedo, FaUndo, FaBold, FaItalic, FaStrikethrough, FaHeading, FaArrowDown, FaPen } from "react-icons/fa"
+
 const Toolbar = ({ editor }) => {
     if (!editor) {
         return null
@@ -5,6 +7,32 @@ const Toolbar = ({ editor }) => {
 
     return (
         <>
+            <button
+                onClick={() => editor.chain().focus().undo().run()}
+                disabled={
+                    !editor.can()
+                        .chain()
+                        .focus()
+                        .undo()
+                        .run()
+                }
+                className='toolbar'
+            >
+                <FaUndo />
+            </button>
+            <button
+                onClick={() => editor.chain().focus().redo().run()}
+                className='toolbar'
+                disabled={
+                    !editor.can()
+                        .chain()
+                        .focus()
+                        .redo()
+                        .run()
+                }
+            >
+                <FaRedo />
+            </button>
             <button
                 onClick={() => editor.chain().focus().toggleBold().run()}
                 disabled={
@@ -14,9 +42,9 @@ const Toolbar = ({ editor }) => {
                         .toggleBold()
                         .run()
                 }
-                className={editor.isActive('bold') ? 'is-active' : 'toolbar'}
+                className={editor.isActive('font-bold') ? 'is-active' : 'toolbar'}
             >
-                bold
+                <FaBold />
             </button>
             <button
                 onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -29,7 +57,7 @@ const Toolbar = ({ editor }) => {
                 }
                 className={editor.isActive('italic') ? 'is-active' : 'toolbar'}
             >
-                italic
+                <FaItalic />
             </button>
             <button
                 onClick={() => editor.chain().focus().toggleStrike().run()}
@@ -40,9 +68,9 @@ const Toolbar = ({ editor }) => {
                         .toggleStrike()
                         .run()
                 }
-                className={editor.isActive('strike') ? 'is-active' : 'toolbar'}
+                className={editor.isActive('strikethrough') ? 'is-active' : 'toolbar'}
             >
-                strike
+                <FaStrikethrough />
             </button>
             {/* <button
                 onClick={() => editor.chain().focus().toggleCode().run()}
@@ -64,18 +92,30 @@ const Toolbar = ({ editor }) => {
                 clear nodes
             </button> */}
             <button
+                onClick={() => editor.chain().focus().toggleBulletList().run()}
+                className={editor.isActive('bulletList') ? 'is-active' : 'toolbar'}
+            >
+                <FaListUl />
+            </button>
+            <button
+                onClick={() => editor.chain().focus().toggleOrderedList().run()}
+                className={editor.isActive('orderedList') ? 'is-active' : 'toolbar'}
+            >
+                <FaListOl />
+            </button>
+            <button
                 onClick={() => editor.chain().focus().setParagraph().run()}
                 className={editor.isActive('paragraph') ? 'is-active' : 'toolbar'}
             >
-                paragraph
+                <FaParagraph />
             </button>
             <button
-                onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-                className={editor.isActive('heading', { level: 1 }) ? 'is-active' : 'toolbar'}
+                onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+                className={editor.isActive('heading', { level: 2 }) ? 'is-active' : 'toolbar'}
             >
-                h1
+                <FaHeading />
             </button>
-            <button
+            {/* <button
                 onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
                 className={editor.isActive('heading', { level: 2 }) ? 'is-active' : 'toolbar'}
             >
@@ -104,20 +144,8 @@ const Toolbar = ({ editor }) => {
                 className={editor.isActive('heading', { level: 6 }) ? 'is-active' : 'toolbar'}
             >
                 h6
-            </button>
-            <button
-                onClick={() => editor.chain().focus().toggleBulletList().run()}
-                className={editor.isActive('bulletList') ? 'is-active' : 'toolbar'}
-            >
-                bullet list
-            </button>
-            <button
-                onClick={() => editor.chain().focus().toggleOrderedList().run()}
-                className={editor.isActive('orderedList') ? 'is-active' : 'toolbar'}
-            >
-                ordered list
-            </button>
-            {/* <button
+            </button> */
+            /* <button
                 onClick={() => editor.chain().focus().toggleCodeBlock().run()}
                 className={editor.isActive('codeBlock') ? 'is-active' : 'toolbar'}
             >
@@ -127,43 +155,17 @@ const Toolbar = ({ editor }) => {
                 onClick={() => editor.chain().focus().toggleBlockquote().run()}
                 className={editor.isActive('blockquote') ? 'is-active' : 'toolbar'}
             >
-                blockquote
+                <FaQuoteLeft />
             </button>
             <button onClick={() => editor.chain().focus().setHorizontalRule().run()}
                 className='toolbar'
             >
-                horizontal rule
+                <FaPen />
             </button>
             <button onClick={() => editor.chain().focus().setHardBreak().run()}
                 className='toolbar'
             >
-                hard break
-            </button>
-            <button
-                onClick={() => editor.chain().focus().undo().run()}
-                disabled={
-                    !editor.can()
-                        .chain()
-                        .focus()
-                        .undo()
-                        .run()
-                }
-                className='toolbar'
-            >
-                undo
-            </button>
-            <button
-                onClick={() => editor.chain().focus().redo().run()}
-                className='toolbar'
-                disabled={
-                    !editor.can()
-                        .chain()
-                        .focus()
-                        .redo()
-                        .run()
-                }
-            >
-                redo
+                <FaArrowDown />
             </button>
         </>
     )
