@@ -37,16 +37,15 @@ const App = () => {
           path: '/',
           loader: postLoader,
           element: <Postlist />,
-          children:[
-            {
-              path: 'edit/:id',
-              loader: async ({ params }) => {
-                let req = await fetch(`http://127.0.0.1:3000/articles/${params.id}`)
-                let res = await req.json()
-                return res},
-              element: <PostEditor />
-            }
-          ]
+        },
+        {
+          path: 'edit/:id',
+          loader: async ({ params }) => {
+            let req = await fetch(`http://127.0.0.1:3000/articles/${params.id}`)
+            let res = await req.json()
+            return res
+          },
+          element: <PostEditor />
         },
         {
           path: 'add-user',

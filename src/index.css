@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+    /* This won't be included in your compiled CSS unless you actually use it */
+    button.toolbar {
+        border: 2px solid #162831;
+        padding: 6px;
+        width: fit-content;
+        border-radius: 8px;
+        background-color: #CCC5B9;
+        
+    }
+
+    button.is-active {
+        border: 2px solid #162831;
+        padding: 6px;
+        width: fit-content;
+        border-radius: 8px;
+        background-color: #919CAD;
+
+    }
+}

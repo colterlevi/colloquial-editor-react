@@ -14,7 +14,7 @@ const PostCreator = () => {
         extensions: [
             StarterKit,
         ],
-        content: `<h2>Write something good...</h2>`,
+        content: `<p>Write something good...</p>`,
     })
 
     const handleSubmit = async (e) => {
@@ -44,15 +44,21 @@ const PostCreator = () => {
     }
 
     return (
-        <div className='rounded-lg p-10 h-4/5 fixed z-50 inset-x-1/4 inset-y-5 focus:outline-none focus:ring focus:border-cello'>
-            <div className='bg-swirl text-dianne flex justify-between'>
+        <div className='rounded-lg p-10 h-full w-full'>
+            <div className='bg-swirl text-dianne px-10 py-2 grid gap-2 grid-cols-12 grid-rows-2 justify-between items-center'>
                 <Toolbar editor={editor} />
             </div>
             <input className="w-full p-3 bg-slate border-chateau text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder='Enter a title...' /><br />
-            <div className='w-full max-h-full mb-10 flex bg-slate prose lg:prose-2xl p-5 max-w-none overflow-auto scrollbar-hide md:scrollbar-default'>
+            <hr />
+            <div className='w-full max-h-full flex bg-slate prose lg:prose-2xl p-5 max-w-none overflow-auto scrollbar-hide md:scrollbar-default'>
                 <EditorContent editor={editor} />
             </div>
-            <div className='bg-swirl p-3'>
+            <hr />
+            <div className='flex w-full'>
+                <input placeholder="Enter categories..." className='w-1/2 h-10 bg-slate outline-chateau'></input>
+                <input placeholder="Enter tags..." className='w-1/2 h-10 bg-slate outline-chateau'></input>
+            </div>
+            <div className='bg-swirl flex justify-center items-center space-x-3 p-3'>
                 <button className="bg-tamarillo text-slate rounded-lg p-3" onClick={(e) => handleSubmit(e)}>Submit</button>
                 <button className="bg-tamarillo text-slate rounded-lg p-3" onClick={() => navigate(-1)}>Close</button>
             </div>

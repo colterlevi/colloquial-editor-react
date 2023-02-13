@@ -32,7 +32,7 @@ const Dashboard = ({ dispatch }) => {
     if (!currentUser) return null
 
     return(
-        <div className='flex bg-dianne w-screen h-screen'>
+        <div className='flex bg-dianne w-screen h-screen overflow-auto scrollbar-hide md:scrollbar-default'>
             <div className="flex-col w-1/5 bg-chateau mr-20 text-center">
                 <h2 className="text-sm text-slate uppercase bg-cello m-14 rounded-lg p-3 w-auto">{currentUser.username}'s DASHBOARD</h2>
                 <Navbar currentUser={currentUser}/>
