@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import Toolbar from '../plugins/toolbar'
 import Cookies from 'js-cookie'
 import { Divider } from '@udecode/plate'
+import StatusDropdown from '../plugins/StatusDropdown'
 
 
 const PostCreator = () => {
@@ -53,7 +54,12 @@ const PostCreator = () => {
                 <Toolbar editor={editor} />
             </div>
             <hr />
-            <input className="w-full p-3 bg-slate border-chateau text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder='Enter a title...' /><br />
+            <div className='flex w-full bg-slate'>
+            <input className="w-4/5 p-3 border-chateau bg-slate text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder='Enter a title...' /><br />
+            <div className='w-1/5 p-3 flex justify-end items-center text-right'>
+                <StatusDropdown />
+            </div>
+            </div>
             <hr />
             <div className='w-full h-3/5 flex bg-slate prose lg:prose-2xl p-5 max-w-none overflow-auto scrollbar-hide md:scrollbar-default'>
                 <EditorContent editor={editor} />
@@ -63,6 +69,7 @@ const PostCreator = () => {
                 <input placeholder="Enter categories..." className='w-1/2 h-10 bg-slate outline-chateau' onChange={(e) => setCategories( e.target.value)}></input>
                 <input placeholder="Enter tags..." className='w-1/2 h-10 bg-slate outline-chateau' onChange={(e) => setTags(e.target.value)}></input>
             </div>
+            
             <div className='bg-chateau flex justify-center items-center space-x-3 p-3'>
                 <button className="bg-tamarillo text-slate rounded-lg p-3" onClick={(e) => handleSubmit(e)}>Submit</button>
                 <button className="bg-tamarillo text-slate rounded-lg p-3" onClick={() => navigate(-1)}>Close</button>

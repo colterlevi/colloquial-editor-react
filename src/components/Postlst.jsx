@@ -11,7 +11,7 @@ const Postlist = () => {
     if (!currentUser) return null
 
     return(
-        <div className="flex-col w-full h-auto overflow-auto scrollbar-hide md:scrollbar-default">
+        <div className="flex-col w-full h-full overflow-auto scrollbar-hide md:scrollbar-default">
             <div className="flex-row bg-cello m-10 p-5 rounded-lg">
                 <Outlet />
                 {
