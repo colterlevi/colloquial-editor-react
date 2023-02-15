@@ -11,14 +11,15 @@ export default function UserModal({}) {
     last_name: user.last_name,
     username: user.username,
     bio: user.bio,
-    admin: user.admin,
+    image: user.image,
+    admin: 0,
     })
     const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
         setIsChecked(user.admin)
         console.log(isChecked)
-    })
+    },[])
     
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -102,7 +103,7 @@ export default function UserModal({}) {
                                         <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.image} name='image' onChange={e => handleChange(e)} placeholder={user.image === '' ? 'image' : user.image} /><br />
                                         <div className="flex space-x-2 justify-center items-center">
                                             <label className="uppercase text-dianne text-2xl">Admin?</label>
-                                            <input className="w-5 h-5" type="checkbox" checked={isChecked} value={1} name='admin' onChange={e => handleChange(e)} />
+                                            <input className="w-5 h-5" type="checkbox" checked={isChecked} value={1} name='admin' onChange={(e) => {setIsChecked(!isChecked); handleChange(e)}} />
                                         </div><br />
                                         <input type="submit" className="p-2 bg-cello hover:bg-tamarillo text-slate uppercase rounded-md" onClick={e => handleSubmit(e)} value="SAVE" />
                                     </form><br />

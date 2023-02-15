@@ -10,7 +10,7 @@ const Userlist = () => {
     if (!currentUser) return null
 
     return (
-        <div className="grid gap-2 grid-cols-2 grid-rows-auto bg-cello w-4/5 h-4/5 m-10 p-10 rounded-lg overflow-auto scrollbar-hide md:scrollbar-default">
+        <div className="grid gap-2 grid-cols-2 grid-rows-auto bg-cello w-4/5 m-10 p-10 rounded-lg overflow-auto scrollbar-hide md:scrollbar-default">
             {
                 users.map((user) => {
                     if (user.id === currentUser.id) return;

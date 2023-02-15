@@ -1,26 +1,25 @@
 import { useEditor, EditorContent } from '@tiptap/react'
+import Image from '@tiptap/extension-image'
 import StarterKit from '@tiptap/starter-kit'
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { useNavigate } from "react-router-dom"
 import Toolbar from '../plugins/toolbar'
 import Cookies from 'js-cookie'
-import StatusDropdown from '../plugins/StatusDropdown'
 
 
 const PostCreator = () => {
-    const title = useRef()
-    const tags = useRef()
-    const categories = useRef()
-    const image = useRef()
-    const slug = useRef()
-    const navigate = useNavigate()
-
     const editor = useEditor({
         extensions: [
-            StarterKit,
+            StarterKit, Image
         ],
         content: `<p>Write something good...</p>`,
     })
+    const title = useRef('')
+    const tags = useRef('')
+    const categories = useRef('')
+    const image = useRef('')
+    const slug = useRef('')
+    const navigate = useNavigate()
 
     const [selectedValue, setSelectedValue] = useState("draft");
 
@@ -58,14 +57,27 @@ const PostCreator = () => {
         }
     }
 
+    const addImage = useCallback(() => {
+        const url = image.current.value
+
+        if (url) {
+            editor.chain().focus().setImage({ src: url }).run()
+        }
+    }, [editor])
+
+    if (!editor) {
+        return null
+    }
+
     return (
         <div className='rounded-lg p-10 h-full w-full'>
             <div className='bg-slate text-dianne px-10 py-2 grid gap-2 grid-cols-12 grid-rows-1 justify-between items-center text-center'>
                 <Toolbar editor={editor} />
             </div>
             <hr />
-            <div className='flex w-full bg-slate'>
+            <div className='flex w-full bg-slate item-center'>
             <input ref={title} className="w-4/5 p-3 border-chateau bg-slate text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' placeholder='Enter a title...' /><br />
+            <button className="bg-chateau rounded-lg text-slate p-1 m-3" onClick={addImage}>setImage</button>
             <div className='w-1/5 p-3 flex justify-end items-center text-right'>
                     <label htmlFor="select-status">Publication status:</label>
                     <select id="select-status" value={selectedValue} onChange={handleChange}>

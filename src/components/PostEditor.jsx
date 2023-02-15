@@ -1,7 +1,8 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useCallback } from 'react'
 import { useLoaderData, useNavigate } from "react-router-dom"
 import { useEditor, EditorContent, Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import Image from '@tiptap/extension-image'
 import Toolbar from '../plugins/toolbar'
 import { useSelector } from "react-redux"
 import Cookies from 'js-cookie'
@@ -20,16 +21,20 @@ const PostEditor = () => {
 
     const editor = useEditor({
         extensions: [
-            StarterKit,
+            StarterKit, Image
         ],
         content: post.content
     })
 
+    const [selectedValue, setSelectedValue] = useState(post.status);
+
+    const handleChange = (event) => {
+        setSelectedValue(event.target.value);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const content = editor.getHTML()
-        // console.log(content)
+        const newContent = editor.getHTML()
         let req = await fetch(`http://127.0.0.1:3000/articles/${post.id}`, {
             method: "PATCH",
             headers: {
@@ -37,10 +42,10 @@ const PostEditor = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                content: content,
-                title: title,
-                categories: categories,
-                tags: tags,
+                content: newContent,
+                title: title.current.value,
+                categories: categories.current.value,
+                tags: tags.current.value,
             })
 
         })
@@ -70,6 +75,18 @@ const PostEditor = () => {
         }
     }
 
+    const addImage = useCallback(() => {
+        const url = image.current.value
+
+        if (url) {
+            editor.chain().focus().setImage({ src: url }).run()
+        }
+    }, [editor])
+
+    if (!editor) {
+        return null
+    }
+
     if (!currentUser) return null
 
     return (
@@ -78,7 +95,17 @@ const PostEditor = () => {
                 <Toolbar editor={editor} />
             </div>
             <hr />
-            <input defaultValue={post.title} className="w-full p-3 bg-slate border-chateau text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title'/><br />
+            <div className='flex w-full bg-slate justify-evenly'>
+            <input ref={title} defaultValue={post.title} className="w-1/2 p-3 bg-slate border-chateau text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title'/><br />
+                <button className="bg-chateau rounded-lg text-slate p-1 m-3" onClick={addImage}>setImage</button>
+            <div className='w-1/5 p-3 flex justify-end items-center text-right'>
+                <label htmlFor="select-status">Publication status:</label>
+                <select id="select-status" value={selectedValue} onChange={handleChange}>
+                    <option value="draft">Draft</option>
+                    <option value="published">Published</option>
+                </select>
+            </div>
+            </div>
             <hr />
             <div className='w-full h-3/4 flex bg-slate prose lg:prose-2xl p-5 max-w-none overflow-auto scrollbar-hide md:scrollbar-default'>
                 <EditorContent editor={editor} />
