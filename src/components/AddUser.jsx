@@ -12,6 +12,7 @@ const AddUser = () => {
         first_name: '',
         last_name: '',
         username: '',
+        image: '',
         admin: 0,
     })
 
@@ -32,6 +33,7 @@ const AddUser = () => {
                 first_name: formData.first_name,
                 last_name: formData.last_name,
                 username: formData.username,
+                image: formData.image,
                 admin: Number(formData.admin),
             })
 
@@ -59,6 +61,7 @@ const AddUser = () => {
                         <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.username} name='username' onChange={e => handleChange(e)} placeholder="USERNAME" /><br />
                         <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="email" value={formData.email} name='email' onChange={e => handleChange(e)} placeholder="EMAIL" /><br />
                         <input className="w-4/5 h-10 pl-3 rounded-md text-left" type="password" value={formData.password} name='password' onChange={e => handleChange(e)} placeholder="PASSWORD" /><br />
+                        <input className="w-4/5 h-10 pl-3 rounded-md text-left" type="text" value={formData.image} name='image' onChange={e => handleChange(e)} placeholder="IMAGE" /><br />
                         <div className="flex space-x-3 justify-center items-center">
                         <label className="uppercase text-slate text-2xl">Admin?</label>
                         <input className="w-5 h-5" type="checkbox" value={1} name='admin' onChange={e => handleChange(e)} placeholder="ADMIN" />

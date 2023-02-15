@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
@@ -12,6 +12,12 @@ export default function UserModal({}) {
     username: user.username,
     bio: user.bio,
     admin: user.admin,
+    })
+    const [isChecked, setIsChecked] = useState(false);
+
+    useEffect(() => {
+        setIsChecked(user.admin)
+        console.log(isChecked)
     })
     
     const handleChange = (e) => {
@@ -31,6 +37,7 @@ export default function UserModal({}) {
                 last_name: formData.last_name,
                 username: formData.username,
                 bio: formData.bio,
+                image: formData.image,
                 admin: Number(formData.admin),
             })
 
@@ -92,9 +99,10 @@ export default function UserModal({}) {
                                         <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.username} name='username' onChange={e => handleChange(e)} placeholder={user.username} /><br />
                                         <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="email" value={formData.email} name='email' onChange={e => handleChange(e)} placeholder={user.email} /><br />
                                         <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.bio} name='bio' onChange={e => handleChange(e)} placeholder={user.bio === '' ? 'bio' : user.bio} /><br />
+                                        <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.image} name='image' onChange={e => handleChange(e)} placeholder={user.image === '' ? 'image' : user.image} /><br />
                                         <div className="flex space-x-2 justify-center items-center">
                                             <label className="uppercase text-dianne text-2xl">Admin?</label>
-                                            <input className="w-5 h-5" type="checkbox" value={1} name='admin' onChange={e => handleChange(e)} />
+                                            <input className="w-5 h-5" type="checkbox" checked={isChecked} value={1} name='admin' onChange={e => handleChange(e)} />
                                         </div><br />
                                         <input type="submit" className="p-2 bg-cello hover:bg-tamarillo text-slate uppercase rounded-md" onClick={e => handleSubmit(e)} value="SAVE" />
                                     </form><br />

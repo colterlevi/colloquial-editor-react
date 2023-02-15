@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useLoaderData, useNavigate } from "react-router-dom"
 import { useEditor, EditorContent, Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
@@ -12,9 +12,11 @@ const PostEditor = () => {
     const post = useLoaderData()
     const navigate = useNavigate()
     const currentUser = useSelector((state) => state.user.value)
-    const [title, setTitle] = useState(post.title)
-    const [tags, setTags] = useState("")
-    const [categories, setCategories] = useState("")
+    const title = useRef()
+    const tags = useRef()
+    const categories = useRef()
+    const image = useRef()
+    const slug = useRef()
 
     const editor = useEditor({
         extensions: [
@@ -27,7 +29,7 @@ const PostEditor = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const content = editor.getHTML()
-        console.log(content)
+        // console.log(content)
         let req = await fetch(`http://127.0.0.1:3000/articles/${post.id}`, {
             method: "PATCH",
             headers: {
@@ -76,15 +78,17 @@ const PostEditor = () => {
                 <Toolbar editor={editor} />
             </div>
             <hr />
-            <input className="w-full p-3 bg-slate border-chateau text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder={title} /><br />
+            <input defaultValue={post.title} className="w-full p-3 bg-slate border-chateau text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title'/><br />
             <hr />
             <div className='w-full h-3/4 flex bg-slate prose lg:prose-2xl p-5 max-w-none overflow-auto scrollbar-hide md:scrollbar-default'>
                 <EditorContent editor={editor} />
             </div>
             <hr />
-            <div className='flex w-full'>
-                <input placeholder="Enter categories..." className='w-1/2 h-10 bg-slate outline-chateau' onChange={(e) => setCategories(e.target.value)}></input>
-                <input placeholder="Enter tags..." className='w-1/2 h-10 bg-slate outline-chateau' onChange={(e) => setTags(e.target.value)}></input>
+            <div className='inline-grid gap-2 grid-cols-2 w-full'>
+                <input ref={categories} placeholder="Enter categories..." defaultValue={post.categories} className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
+                <input ref={tags} placeholder="Enter tags..." defaultValue={post.tags} className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
+                <input ref={slug} placeholder="Enter slug..." defaultValue={post.slug} className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
+                <input ref={image} placeholder="Enter image..." defaultValue={post.image} className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
             </div>
             <div className='bg-chateau flex justify-center items-center space-x-3 p-3'>
                 <button className="bg-tamarillo text-slate rounded-lg p-3" onClick={(e) => handleSubmit(e)}>Submit</button>

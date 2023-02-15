@@ -34,7 +34,12 @@ const Dashboard = ({ dispatch }) => {
     return(
         <div className='flex bg-dianne w-screen h-screen overflow-auto scrollbar-hide md:scrollbar-default'>
             <div className="flex-col w-1/5 bg-chateau mr-20 text-center">
-                <h2 className="text-sm text-slate uppercase bg-cello m-14 rounded-lg p-3 w-auto">{currentUser.username}'s DASHBOARD</h2>
+                <div onClick={() => navigate(`users/${currentUser.id}`)} className="flex justify-center items-center m-28 rounded-full w-28 h-28 bg-tamarillo">
+                    <div>
+                        <img className="rounded-full h-20 w-20" src={currentUser.image} />
+                    </div>
+                    {/* <h2 className="text-sm text-slate uppercase bg-cello m-14 rounded-lg p-3 w-auto">{currentUser.username}'s DASHBOARD</h2> */}
+                </div>
                 <Navbar currentUser={currentUser}/>
                 <Logout dispatch={dispatch} navigate={navigate} />
             </div>

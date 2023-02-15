@@ -1,17 +1,18 @@
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useNavigate } from "react-router-dom"
 import Toolbar from '../plugins/toolbar'
 import Cookies from 'js-cookie'
-import { Divider } from '@udecode/plate'
 import StatusDropdown from '../plugins/StatusDropdown'
 
 
 const PostCreator = () => {
-    const [title, setTitle] = useState('')
-    const [tags, setTags] = useState('')
-    const [categories, setCategories] = useState('')
+    const title = useRef()
+    const tags = useRef()
+    const categories = useRef()
+    const image = useRef()
+    const slug = useRef()
     const navigate = useNavigate()
 
     const editor = useEditor({
@@ -20,6 +21,12 @@ const PostCreator = () => {
         ],
         content: `<p>Write something good...</p>`,
     })
+
+    const [selectedValue, setSelectedValue] = useState("draft");
+
+    const handleChange = (event) => {
+        setSelectedValue(event.target.value);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -33,9 +40,12 @@ const PostCreator = () => {
             },
             body: JSON.stringify({
                 content: content,
-                title: title,
-                categories: categories,
-                tags: tags,
+                title: title.current.value,
+                categories: categories.current.value,
+                tags: tags.current.value,
+                status: selectedValue,
+                image: image.current.value,
+                slug: slug.current.value,
             })
 
         })
@@ -55,9 +65,13 @@ const PostCreator = () => {
             </div>
             <hr />
             <div className='flex w-full bg-slate'>
-            <input className="w-4/5 p-3 border-chateau bg-slate text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' onChange={(e) => setTitle(e.target.value)} placeholder='Enter a title...' /><br />
+            <input ref={title} className="w-4/5 p-3 border-chateau bg-slate text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title' placeholder='Enter a title...' /><br />
             <div className='w-1/5 p-3 flex justify-end items-center text-right'>
-                <StatusDropdown />
+                    <label htmlFor="select-status">Publication status:</label>
+                    <select id="select-status" value={selectedValue} onChange={handleChange}>
+                        <option value="draft">Draft</option>
+                        <option value="published">Published</option>
+                    </select>
             </div>
             </div>
             <hr />
@@ -65,9 +79,11 @@ const PostCreator = () => {
                 <EditorContent editor={editor} />
             </div>
             <hr />
-            <div className='flex w-full'>
-                <input placeholder="Enter categories..." className='w-1/2 h-10 bg-slate outline-chateau' onChange={(e) => setCategories( e.target.value)}></input>
-                <input placeholder="Enter tags..." className='w-1/2 h-10 bg-slate outline-chateau' onChange={(e) => setTags(e.target.value)}></input>
+            <div className='inline-grid gap-2 grid-cols-2 w-full'>
+                <input ref={categories} placeholder="Enter categories..." className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
+                <input ref={tags} placeholder="Enter tags..." className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
+                <input ref={slug} placeholder="Enter slug..." className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
+                <input ref={image} placeholder="Enter image..." className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
             </div>
             
             <div className='bg-chateau flex justify-center items-center space-x-3 p-3'>

@@ -10,7 +10,7 @@ const Userlist = () => {
     if (!currentUser) return null
 
     return (
-        <div className="flex-row bg-cello w-4/5 h-4/5 m-10 p-10 rounded-lg overflow-auto scrollbar-hide md:scrollbar-default">
+        <div className="grid gap-2 grid-cols-2 grid-rows-auto bg-cello w-4/5 h-4/5 m-10 p-10 rounded-lg overflow-auto scrollbar-hide md:scrollbar-default">
             {
                 users.map((user) => {
                     if (user.id === currentUser.id) return;
@@ -18,16 +18,18 @@ const Userlist = () => {
                     return (
                         <>
                         <Outlet />
-                        <div key={user.id} className="flex justify-between w-auto h-auto m-8 p-5 rounded-lg font-bold text-dianne bg-swirl hover:bg-chateau hover:text-tamarillo"
+                        <div key={user.id} className="flex-row justify-center items-center w-auto h-52 m-8 p-2 rounded-lg font-bold text-dianne bg-swirl hover:bg-chateau hover:text-tamarillo"
                         onClick={() => {navigate(`${user.id}`)}} 
                         >
-                            <div className="flex space-x-2 justify-center items-center">
-                                <p className="text-xl">{user.username}</p>
+                            <div className="flex-row space-x-2">
+                                    <img className="w-20 h-20 rounded-full float-right" src={user.image} alt={user.first_name} />
+                                    <p className="text-xl">{user.username}
                                     {
                                         user.admin === true ? <FaCrown /> : null
-                                    }
+                                        }</p>
                                 <br />
-                            </div>
+                                    <p className="italic">'{user.bio}'</p>
+                            </div><br />
                             <div className="text-right">
                                 <p className="text-md">{user.first_name} {user.last_name}</p>
                                 <p className="underline">{user.email}</p>
