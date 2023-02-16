@@ -7,6 +7,7 @@
     /* This won't be included in your compiled CSS unless you actually use it */
     button.toolbar {
         border: 2px solid #162831;
+        color:#162831;
         padding: 6px;
         margin: 1em;
         width: fit-content;
@@ -16,7 +17,8 @@
     }
 
     button.is-active {
-        border: 2px solid #162831;
+        border: 2px solid #CCC5B9;
+        color: #CCC5B9;
         padding: 6px;
         margin: 1em;
         width: fit-content;

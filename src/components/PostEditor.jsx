@@ -6,6 +6,7 @@ import Image from '@tiptap/extension-image'
 import Toolbar from '../plugins/toolbar'
 import { useSelector } from "react-redux"
 import Cookies from 'js-cookie'
+import { FaImage } from 'react-icons/fa'
 
 
 const PostEditor = () => {
@@ -34,7 +35,9 @@ const PostEditor = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (currentUser.admin === false && currentUser.id !== post.authoor_id) {
+        console.log(currentUser.id)
+        console.log(post.author_id)
+        if (currentUser.admin === false && currentUser.id !== post.author_id) {
             alert("You lack the required permissions for that.")
             return;
         } else {
@@ -105,11 +108,11 @@ const PostEditor = () => {
         <div className='rounded-lg p-10 h-full w-full'>
             <div className='bg-slate text-dianne px-10 py-2 grid gap-2 grid-cols-12 grid-rows-1 justify-between items-center text-center'>
                 <Toolbar editor={editor} />
+                <button className="toolbar" onClick={addImage}><FaImage /></button>
             </div>
             <hr />
             <div className='flex w-full bg-slate justify-evenly'>
             <input ref={title} defaultValue={post.title} className="w-1/2 p-3 bg-slate border-chateau text-left text-4xl font-bold placeholder:font-bold placeholder:text-4xl" type="text" name='title'/><br />
-                <button className="bg-chateau rounded-lg text-slate p-1 m-3" onClick={addImage}>setImage</button>
             <div className='w-1/5 p-3 flex justify-end items-center text-right'>
                 <label htmlFor="select-status">Publication status:</label>
                 <select id="select-status" value={selectedValue} onChange={handleChange}>

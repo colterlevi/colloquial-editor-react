@@ -162,11 +162,11 @@ const Toolbar = ({ editor }) => {
             >
                 <FaPen />
             </button>
-            <button onClick={() => editor.chain().focus().setHardBreak().run()}
+            {/* <button onClick={() => editor.chain().focus().setHardBreak().run()}
                 className='toolbar'
             >
                 <FaArrowDown />
-            </button>
+            </button> */}
         </>
     )
 }
