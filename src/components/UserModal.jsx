@@ -47,10 +47,9 @@ export default function UserModal({}) {
         })
         let res = await req.json()
         if (req.ok) {
-            console.log(res)
-
+            navigate(-1)
         } else {
-            console.log("USER PATCH FAILED")
+            alert("FAILED TO SAVE USER INFO")
         }
     }
 
