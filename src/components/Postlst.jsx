@@ -7,7 +7,7 @@ const Postlist = () => {
     const posts = useLoaderData()
     const navigate = useNavigate()
     const currentUser = useSelector((state) => state.user.value)
-
+    
     if (!currentUser) return null
 
     return(

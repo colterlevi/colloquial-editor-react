@@ -33,15 +33,19 @@ const Dashboard = ({ dispatch }) => {
 
     return(
         <div className='flex bg-dianne w-screen h-screen overflow-auto scrollbar-hide md:scrollbar-default'>
-            <div className="flex-col w-1/5 bg-chateau mr-20 text-center">
-                <div onClick={() => navigate(`users/${currentUser.id}`)} className="flex justify-center items-center m-28 rounded-full w-28 h-28 bg-tamarillo">
-                    <div>
+            <div className="flex-col w-1/5 h-full bg-chateau justify-center space-y-10 pt-10">
+                <div className="flex w-full justify-center items-center text-center">
+                 <div onClick={() => navigate(`users/${currentUser.id}`)} className="flex justify-center items-center rounded-full w-28 h-28 bg-tamarillo">
                         <img className="rounded-full h-20 w-20" src={currentUser.image} />
-                    </div>
                     {/* <h2 className="text-sm text-slate uppercase bg-cello m-14 rounded-lg p-3 w-auto">{currentUser.username}'s DASHBOARD</h2> */}
+                    </div>
                 </div>
-                <Navbar currentUser={currentUser}/>
-                <Logout dispatch={dispatch} navigate={navigate} />
+                <div className="flex justify-center items-center text-center">
+                    <Navbar currentUser={currentUser}/>
+                </div>
+                <div className="flex justify-center items-center text-center">
+                    <Logout dispatch={dispatch} navigate={navigate} />
+                </div>
             </div>
             <div className="flex w-4/5 justify-center items-center overflow-auto scrollbar-hide md:scrollbar-default">
                 <Outlet />

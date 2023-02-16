@@ -34,6 +34,10 @@ const PostEditor = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (currentUser.admin === false && currentUser.id !== post.authoor_id) {
+            alert("You lack the required permissions for that.")
+            return;
+        } else {
         const newContent = editor.getHTML()
         let req = await fetch(`http://127.0.0.1:3000/articles/${post.id}`, {
             method: "PATCH",
@@ -46,6 +50,8 @@ const PostEditor = () => {
                 title: title.current.value,
                 categories: categories.current.value,
                 tags: tags.current.value,
+                slug: slug.current.value,
+                image: image.current.value,
             })
 
         })
@@ -54,12 +60,17 @@ const PostEditor = () => {
             console.log(res)
             navigate('/')
         } else {
-            console.log("POST CREATION FAILED")
+            console.log("POST PATCH FAILED")
         }
+    }
     }
 
     const handleDelete = async (e) => {
         e.preventDefault()
+        if (currentUser.admin === false) {
+            alert("You lack the required permissions for that.")
+            return;
+        } else {
         let req = await fetch(`http://127.0.0.1:3000/articles/${post.id}`, {
             method: "DELETE",
             headers: {
@@ -73,6 +84,7 @@ const PostEditor = () => {
         } else {
             console.log("POST DELETION FAILED")
         }
+    }
     }
 
     const addImage = useCallback(() => {
@@ -112,8 +124,8 @@ const PostEditor = () => {
             </div>
             <hr />
             <div className='inline-grid gap-2 grid-cols-2 w-full'>
-                <input ref={categories} placeholder="Enter categories..." defaultValue={post.categories} className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
-                <input ref={tags} placeholder="Enter tags..." defaultValue={post.tags} className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
+                <input ref={categories} placeholder={post.categories} defaultValue={"uncategorized"} className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
+                <input id="tags" ref={tags} placeholder={post.tags} defaultValue={"untagged"} className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
                 <input ref={slug} placeholder="Enter slug..." defaultValue={post.slug} className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
                 <input ref={image} placeholder="Enter image..." defaultValue={post.image} className='w-full pl-2 h-10 bg-slate outline-chateau'></input>
             </div>

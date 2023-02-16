@@ -56,7 +56,7 @@ const Login = ({dispatch}) => {
             navigate('/')
 
         } else {
-            alert("LOGIN FAILED")
+            alert("Incorrect email or password")
         }
     }
 

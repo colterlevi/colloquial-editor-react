@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux"
 
 export default function UserModal({}) {
     const user = useLoaderData()
+    const currentUser = useSelector((state) => state.user.value)
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
     email: user.email,
@@ -78,7 +80,7 @@ export default function UserModal({}) {
 
     if (!user) return null
 
-
+    if (currentUser.admin === true){
     return (
       
                     <div
@@ -128,7 +130,46 @@ export default function UserModal({}) {
                             </div>
                         </div>
                     </div>
-                    // <div className="opacity-25 fixed inset-0 z-40 bg-dianne"></div>
-
     );
+} else {
+        return (
+            <div
+                className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+            >
+                <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                    {/*content*/}
+                    <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-slate outline-none focus:outline-none">
+                        {/*header*/}
+                        <div className="flex items-start justify-between p-5 border-b border-solid border-chateau rounded-t">
+                        </div>
+                        {/*body*/}
+                        <div className="flex-row justify-center items-center">
+                            <img src="../ColloquialHeader5.png" className="p-3 w-96" />
+                            <h2 className="font-semibold text-3xl text-center text-dianne">EDIT USER</h2><br />
+                            <form className="flex-row justify-center items-center text-center space-y-3">
+                                <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.first_name} name='first_name' onChange={e => handleChange(e)} placeholder={user.first_name} /><br />
+                                <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.last_name} name='last_name' onChange={e => handleChange(e)} placeholder={user.last_name} /><br />
+                                <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.username} name='username' onChange={e => handleChange(e)} placeholder={user.username} /><br />
+                                <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="email" value={formData.email} name='email' onChange={e => handleChange(e)} placeholder={user.email} /><br />
+                                <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.bio} name='bio' onChange={e => handleChange(e)} placeholder={user.bio === '' ? 'bio' : user.bio} /><br />
+                                <input className="h-10 w-4/5 pl-3 rounded-md text-left" type="text" value={formData.image} name='image' onChange={e => handleChange(e)} placeholder={user.image === '' ? 'image' : user.image} /><br />
+                                <input type="submit" className="p-2 bg-cello hover:bg-tamarillo text-slate uppercase rounded-md" onClick={e => handleSubmit(e)} value="SAVE" />
+                            </form><br />
+                        </div>
+                        {/*footer*/}
+                        <div className="flex items-center justify-end p-6 border-t border-solid border-chateau rounded-b">
+                            <button
+                                className="text-slate bg-tamarillo font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                type="button"
+                                onClick={(e) => handleClick(e)}
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+}
 }
